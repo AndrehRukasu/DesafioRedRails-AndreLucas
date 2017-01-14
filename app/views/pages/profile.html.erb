@@ -44,6 +44,7 @@
       <% end %>
     </div>
     <div class="col-xs-3">
+      <%= render '/components/follow_button', :user => User.find_by_username(params[:id]) %>
       <%= render '/layouts/who_to_follow' %>
       <%= render '/layouts/trend_topic' %>
     </div>

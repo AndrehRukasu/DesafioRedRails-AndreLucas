@@ -15,6 +15,7 @@
 </head>
 <body>
   <%= render '/layouts/nav' %>
+  <div style="margin-bottom:50px"></div>
   <% if (params[:id] != nil) %>
     <% @url = '/user/' + params[:id] %>
     <% if current_page?(@url) %>
@@ -24,16 +25,24 @@
         <div class="container" style="padding-top:10px">
           <div class="col-sm-3">&nbsp;</div>
           <div class="col-sm-6 text-center">
-            <div class="col-sm-2">
+            <div class="col-sm-2 text-center">
               TWEETS<br />
               <h4 style="color:#F44336"><%=  Post.where(user_id: User.find_by_username(params[:id]).id ).count %></h4>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-2 text-center">
               FOLLOWERS<br />
-              <h4 style="color:#F44336">0</h4>
+              <h4 style="color:#F44336"><%= User.find_by_username(params[:id]).followers.count %></h4>
             </div>
-            <div class="col-sm-8">
-             <a href="/users/edit"><button type="button" class="btn btn-info" style="float:right; margin-top:5px">Edit Profile</button></a>
+            <div class="col-sm-2 " style="margin-left:15px">
+              FOLLOWING<br />
+              <h4 style="color:#F44336"><%= User.find_by_username(params[:id]).following.count %></h4>
+            </div>
+            <div class="col-sm-5">
+              <% if user_signed_in? %>
+                <% if current_user.username == params[:id] %>
+                  <a href="/users/edit"><button type="button" class="btn btn-info" style="float:right; margin-top:5px">Edit Profile</button></a>
+                <% end %>
+              <% end %>
             </div>
           </div>
         </div>

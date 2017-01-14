@@ -4,7 +4,12 @@ class PagesController < ApplicationController
   end
 
   def home
-    @posts = Post.all
+    @posts = []
+    Post.all.each do |p|
+      if current_user.following? User.find(p.user_id) or p.user_id === current_user.id
+        @posts << p
+      end
+    end
     @newPost = Post.new
   end
 
