@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+
+#necessario no windows
+gem "tzinfo-data"
 #User authentification
 gem 'devise'
 #For twitter UI Components. Navbar;

@@ -12,15 +12,19 @@
             <div class="col-sm-10">
               <h3><%= link_to current_user.username,"/user/"+current_user.username %></h3>
             </div>
-            <div class= "col-sm-3" style="font-size:80%; opacity:0.7">TWEETS<br />
-            <h4 style="color:#F44336"><%=  Post.where(user_id: current_user.id.to_s ).count %></h4>
+            <br>
+            <div class="row">
+              <div class= "col-sm-4" style="font-size:80%; opacity:0.7">TWEETS<br />
+              <h4 style="color:#F44336"><%=  Post.where(user_id: current_user.id.to_s ).count %></h4>
+              </div>
+              <div class= "col-sm-3 text-center" style=" font-size:80%; opacity:0.7">FOLLOWING<br />
+              <h4 style="color:#F44336"><%= current_user.following.count %></h4>
+              </div>
+              <div class= "col-sm-4" style="font-size:80%; opacity:0.7">FOLLOWERS<br />
+              <h4 style="color:#F44336"><%= current_user.followers.count %></h4>
+              </div>  
             </div>
-            <div class= "col-sm-4" style="font-size:80%; opacity:0.7">FOLLOWING<br />
-            <h4 style="color:#F44336"><%= current_user.following.count %></h4>
-            </div>
-            <div class= "col-sm-4" style="font-size:80%; opacity:0.7">FOLLOWERS<br />
-            <h4 style="color:#F44336"><%= current_user.followers.count %></h4>
-            </div>
+            
             </div>
           </div>
         </div>
