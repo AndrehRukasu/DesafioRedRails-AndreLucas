@@ -1,0 +1,8 @@
+<div class="panel panel-default">
+  <div class="panel-body" style="color:grey">
+    <h3>Who to Follow</h3>
+    <% for @u in @toFollow %>
+      <h4><%= link_to @u.username, "/user/"+@u.username %><br /></h4>
+    <% end %>
+  </div>
+</div>

@@ -5,16 +5,46 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <style>
+    .text {
+      color:white;
+      font-weight:300;
+      font-size:130%;
+    }
+  </style>
 </head>
 <body>
-<%= render '/layouts/nav' %>
-
-<div class="container">
-  <span class="notice"><%= notice %></span>
-  <span class="alert"><%= alert %></span>
-  <%= yield %>  
-</div>
-
-
+  <%= render '/layouts/nav' %>
+  <% if (params[:id] != nil) %>
+    <% @url = '/user/' + params[:id] %>
+    <% if current_page?(@url) %>
+    <img src="/banner2.jpg" class="banner">
+    <div class="row">
+      <div class="col-sm-12" style="background-color:white">
+        <div class="container" style="padding-top:10px">
+          <div class="col-sm-3">&nbsp;</div>
+          <div class="col-sm-6 text-center">
+            <div class="col-sm-2">
+              TWEETS<br />
+              <h4 style="color:#F44336"><%=  Post.where(user_id: User.find_by_username(params[:id]).id ).count %></h4>
+            </div>
+            <div class="col-sm-2">
+              FOLLOWERS<br />
+              <h4 style="color:#F44336">0</h4>
+            </div>
+            <div class="col-sm-8">
+             <a href="/users/edit"><button type="button" class="btn btn-info" style="float:right; margin-top:5px">Edit Profile</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+  <div class="container">
+    <span class="notice text"><%= notice %></span>
+    <span class="alert text"><%= alert %></span>
+    <%= yield %>  
+  </div>
 </body>
 </html>

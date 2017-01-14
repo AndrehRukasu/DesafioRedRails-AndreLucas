@@ -7,7 +7,7 @@ class PostsController < ApplicationController
        @post.user_id = current_user.id
        respond_to do |f|
            if(@post.save)
-               f.html{redirect_to '/user/'+current_user.username, notice:"Post Created"}
+               f.html{redirect_to '', notice:"Post Created"}
            else
                f.html{redirect_to '', notice:"Error: Post not saved"}
            end
